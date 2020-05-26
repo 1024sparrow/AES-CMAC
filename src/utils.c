@@ -12,6 +12,15 @@ void print_bytes(unsigned char* buf, const size_t len)
     printf("\n");
 }
 
+void print_bytes_boris(char *buf, const size_t len)
+{
+	for (size_t i = 0 ; i < len ; ++i)
+	{
+		printf("%02x ", buf[i]);
+	}
+	printf("\n");
+}
+
 void block_xor(unsigned char* dst, unsigned char* a, unsigned char* b)
 {
     for (auto j = 0; j < 16; j++) {

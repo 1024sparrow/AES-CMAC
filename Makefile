@@ -6,7 +6,7 @@ BUILD_PATH = build/obj
 BIN_PATH = build/bin
 
 # executable
-BIN_NAME = aes-cmac.out
+BIN_NAME = aes-cmac
 
 # extensions
 SRC_EXT = c
