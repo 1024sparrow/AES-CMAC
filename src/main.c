@@ -29,7 +29,7 @@ Non ASCII-symbols in arguments is not supported.
 
 static int putSymbol__state = 0;
 static char putSymbol__dataCharCand;
-int putSymbol(char ch, char *data, int *dataLength, int dataLengthLimit)
+int putSymbol(char ch, unsigned char *data, int *dataLength, int dataLengthLimit)
 {
 	unsigned char cand;
 	if (ch >= '0' && ch <= '9')
@@ -78,10 +78,10 @@ int main(int argc, char* argv[])
         printf("Usage: %s MESSAGE KEY\n", argv[0]);
     }*/
 
-	char data[INPUT_BYTES_LIMIT];
+	unsigned char data[INPUT_BYTES_LIMIT];
 	int dataLength = 0;
 	
-	char key[16];
+	unsigned char key[16];
 
 	int state = 0;
 	int counter = 0;
@@ -171,17 +171,17 @@ int main(int argc, char* argv[])
 			return 1;
 		}
 		printf("%sKey%s\n", ACCENTCOLOR, DEFAULT);
-		print_bytes_boris(key, 16);
+		print_bytes(key, 16);
 		printf("%sData%s\n", ACCENTCOLOR, DEFAULT);
-		print_bytes_boris(data, dataLength);
+		print_bytes(data, dataLength);
 
-		//=======================
-		char out[16];
+		unsigned char out[16];
 		aes_cmac(data, dataLength, out, key);
 		printf("%sAES-128-CMAC Result%s\n", ACCENTCOLOR, DEFAULT);
-		print_bytes_boris(out, 16);
+		print_bytes(out, 16);
 
-		/*unsigned int n = 0;
+		//=======================
+		unsigned int n = 0;
 		unsigned char* C;
 
 		C = ecb_encrypt((unsigned char*)argv[1], (unsigned char*)argv[2], aes_128_encrypt, &n);
@@ -192,7 +192,7 @@ int main(int argc, char* argv[])
 
 		C = ecb_decrypt(C, (unsigned char*)argv[2], aes_128_decrypt, &n);
 		printf("%sAES-128-ECB Decrypt Result%s\n", ACCENTCOLOR, DEFAULT);
-		printf("\"%s\"", C);*/
+		printf("\"%s\"", C);
 	}
 
     return 0;
